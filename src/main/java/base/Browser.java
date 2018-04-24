@@ -8,15 +8,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class Browser {
 
-        public static WebDriver webDriver = new ChromeDriver();
+        private static WebDriver webDriver = new ChromeDriver();
         private static String baseUrl = "https://www.fashionette.de";
-        private static WebDriver driver;
 
 
         public static void goTo(String relativeUrl)
         {
             webDriver.navigate().to(baseUrl + relativeUrl);
         }
+
+        public static String Url(){
+            return webDriver.getCurrentUrl();
     }
 
 }

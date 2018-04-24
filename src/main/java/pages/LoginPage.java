@@ -1,5 +1,6 @@
 package pages;
 
+import base.Browser;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -16,7 +17,7 @@ public class LoginPage {
         WebElement passwordField;
 
         @FindBy(className = "btn__submit")
-        WebElement submitBtn;
+        WebElement loginBtn;
 
         @FindBy(className = "icon--small icon--cross-big-red")
         WebElement backBtn;
@@ -27,7 +28,23 @@ public class LoginPage {
         @FindBy(className = "logo-claim")
         WebElement siteLogo;
 
+        public void goTo(){
+                Browser.goTo("/login");
+        }
 
-    }
+        public void entersEmail(String email){
+                emailField.sendKeys(email);
+        }
 
+        public void entersPassword(String password){
+                passwordField.sendKeys(password);
+        }
+
+        public void pressesLogibBtn(){
+                loginBtn.click();
+        }
+
+        public boolean isAt(){
+                return Browser.Url().contains("/login");
+        }
 }
