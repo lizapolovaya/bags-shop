@@ -1,15 +1,16 @@
 package tests;
 
 import base.TestBase;
-import com.sun.tools.javac.util.Assert;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.Test;
 import pages.LoginPage;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 /**
  * Created by liza on 4/25/18.
  */
 public class LoginPageTest extends TestBase{
-    WebDriver webDriver;
     LoginPage loginPage;
 
     @Test
@@ -19,7 +20,7 @@ public class LoginPageTest extends TestBase{
         loginPage.entersPassword("password12345");
         loginPage.pressesLogibBtn();
 
-        Assert.assertFalse(loginPage.isAt(), "user is still on login page");
+        assertFalse (loginPage.isAt(), "user is still on login page");
 
     }
 

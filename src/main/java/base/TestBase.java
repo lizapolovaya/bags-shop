@@ -1,10 +1,9 @@
 package base;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.After;
-import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
 
 /**
  * Created by liza on 4/24/18.
@@ -14,7 +13,7 @@ public class TestBase {
     WebDriver webDriver;
     private static String baseUrl = "https://www.fashionette.de";
 
-    @Before
+    @BeforeEach
     public void setUp(){
         WebDriver webDriver = new ChromeDriver();
         webDriver.get(baseUrl);
@@ -22,7 +21,7 @@ public class TestBase {
 
 
 
-    @After
+    @AfterEach
     public void tearDown(){
         if (webDriver != null) {
             webDriver.quit();
