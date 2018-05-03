@@ -34,16 +34,19 @@ public class LoginPage {
                 return this;
         }
 
-        public void entersEmail(String email){
+        public LoginPage entersEmail(String email){
                 emailField.setValue("email");
+                return  this;
         }
 
-        public void entersPassword(String password){
+        public LoginPage entersPassword(String password){
                 passwordField.setValue(password);
+                return this;
         }
 
-        public void pressesLoginBtn(){
+        public LoginPage pressesLoginBtn(){
                 loginBtn.click();
+                return this;
         }
 
         public void isAt(){
