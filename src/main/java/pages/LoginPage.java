@@ -1,8 +1,11 @@
 package pages;
 
-import base.Browser;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
+import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.Selenide.$;
 
 /**
  * Created by liza on 4/24/18.
@@ -10,41 +13,38 @@ import org.openqa.selenium.support.FindBy;
 public class LoginPage {
 
 
-        @FindBy(name = "email")
-        WebElement emailField;
+        private SelenideElement emailField = $(By.className("email"));
 
-        @FindBy(name = "password")
-        WebElement passwordField;
+        private SelenideElement passwordField = $(By.className("password"));
 
-        @FindBy(className = "btn__submit")
-        WebElement loginBtn;
+        private SelenideElement loginBtn = $(By.className("btn__submit"));
 
-        @FindBy(className = "icon--small icon--cross-big-red")
-        WebElement backBtn;
+        private SelenideElement backBtn = $(By.className("icon--small icon--cross-big-red"));
 
-        @FindBy(css = "a.forgot-password-toggle > font > font")
-        WebElement forgotPasswordLink;
+        private SelenideElement forgotPasswordLink = $(By.cssSelector("a.forgot-password-toggle > font > font"));
 
-        @FindBy(className = "logo-claim")
-        WebElement siteLogo;
+        private SelenideElement siteLogo = $(By.className("logo-claim"));
 
-        public void goTo(){
-                Browser.goTo("/login");
+
+        public LoginPage open(){
+                Selenide.open("/login");
+                return this;
         }
 
         public void entersEmail(String email){
-                emailField.sendKeys(email);
+                emailField.setValue("email");
         }
 
         public void entersPassword(String password){
-                passwordField.sendKeys(password);
+                passwordField.setValue(password);
         }
 
         public void pressesLogibBtn(){
                 loginBtn.click();
         }
 
-        public boolean isAt(){
-                return Browser.Url().contains("/login");
+        public void isAt(){
+                WebDriverRunner.url();
         }
+
 }
