@@ -25,6 +25,9 @@ public class LoginPage {
 
         private SelenideElement siteLogo = $(By.className("logo-claim"));
 
+        private SelenideElement validationError = $(By.className("login__errortext login--modal__response-error"));
+
+
 
         public LoginPage open(){
                 Selenide.open("/login");
@@ -39,12 +42,17 @@ public class LoginPage {
                 passwordField.setValue(password);
         }
 
-        public void pressesLogibBtn(){
+        public void pressesLoginBtn(){
                 loginBtn.click();
         }
 
         public void isAt(){
                 WebDriverRunner.url();
         }
+
+        public boolean validationErrorDisplayed(){
+                return validationError.isDisplayed();
+        }
+
 
 }
