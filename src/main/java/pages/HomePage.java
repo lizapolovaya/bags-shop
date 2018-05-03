@@ -1,16 +1,17 @@
 package pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.Selenide.$;
 
 /**
  * Created by liza on 4/24/18.
  */
 public class HomePage {
 
-    @FindBy(className = "header__background")
-    WebElement header;
+    private SelenideElement header = $(By.className("header__background"));
 
-    @FindBy(className = "footer__navigation")
-    WebElement footerNavigationBar;
+    private SelenideElement footerNavigationBar = $(By.className("footer__navigation"));
+
 }
