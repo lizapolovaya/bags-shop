@@ -1,11 +1,11 @@
 package tests;
 
 import base.TestBase;
-import com.codeborne.selenide.WebDriverRunner;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 import pages.LoginPage;
+import pages.UserAccountPage;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.testng.Assert.assertTrue;
 
 
 /**
@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginPageTest extends TestBase{
 
     LoginPage loginPage = new LoginPage();
+    UserAccountPage userAccountPage = new UserAccountPage();
 
     @Test
     public void CanLogin(){
@@ -23,8 +24,9 @@ public class LoginPageTest extends TestBase{
         loginPage.entersEmail("hello0305@yopmail.com");
         loginPage.entersPassword("Password1");
         loginPage.pressesLoginBtn();
+        userAccountPage.waitForLogoutBtnToBeVisible();
 
-        assertTrue(WebDriverRunner.url().contains("https://www.fashionette.de/account/customer"), "User is not on a user dashboard");
+        assertTrue(userAccountPage.isAt(), "User is not on the user account page");
     }
 
     @Test
@@ -35,6 +37,7 @@ public class LoginPageTest extends TestBase{
         loginPage.entersEmail("hello0305@yopmail.com");
         loginPage.entersPassword("Password12");
         loginPage.pressesLoginBtn();
+        loginPage.WaitUntilValidationErrorDisplayed();
 
         assertTrue(loginPage.validationErrorDisplayed(), "There is no validation error");
     }

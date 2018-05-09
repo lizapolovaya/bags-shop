@@ -1,14 +1,14 @@
 package base;
 
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeEach;
+import org.testng.annotations.BeforeTest;
 
 /**
  * Created by liza on 4/24/18.
  */
 public class TestBase {
 
-    @BeforeEach
+    @BeforeTest
     public void setUp(){
         Configuration.browser = "chrome";
         Configuration.baseUrl = "https://www.fashionette.de";

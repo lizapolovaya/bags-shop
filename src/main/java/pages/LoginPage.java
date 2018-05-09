@@ -1,8 +1,10 @@
 package pages;
 
+import base.Extensions;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -13,11 +15,11 @@ import static com.codeborne.selenide.Selenide.$;
 public class LoginPage {
 
 
-        private SelenideElement emailField = $(By.className("email"));
+        private SelenideElement emailField = $(By.name("email"));
 
-        private SelenideElement passwordField = $(By.className("password"));
+        private SelenideElement passwordField = $(By.name("password"));
 
-        private SelenideElement loginBtn = $(By.className("btn__submit"));
+        private SelenideElement loginBtn = $(By.cssSelector("button.btn__submit"));
 
         private SelenideElement backBtn = $(By.className("icon--small icon--cross-big-red"));
 
@@ -35,7 +37,7 @@ public class LoginPage {
         }
 
         public LoginPage entersEmail(String email){
-                emailField.setValue("email");
+                emailField.setValue(email);
                 return  this;
         }
 
@@ -44,13 +46,19 @@ public class LoginPage {
                 return this;
         }
 
-        public LoginPage pressesLoginBtn(){
+        public LoginPage pressesLoginBtn()
+        {
                 loginBtn.click();
                 return this;
         }
 
-        public void isAt(){
-                WebDriverRunner.url();
+        public boolean isAt(){
+                String title = Extensions.getCurrentUrl();
+                return title.contains(Configuration.baseUrl);
+        }
+
+        public void WaitUntilValidationErrorDisplayed(){
+                validationError.shouldBe(Condition.visible);
         }
 
         public boolean validationErrorDisplayed(){
